@@ -1,0 +1,95 @@
+CREATE TABLE games (
+    id BIGINT(20) NOT NULL AUTO_INCREMENT,
+    game_status VARCHAR(10) NOT NULL, #STARTED LOST WON
+    timer_value INTEGER NOT NULL,
+    mined_cell_found_count INTEGER NOT NULL,
+    mined_cell_count INTEGER NOT NULL,
+    row_count INTEGER NOT NULL,
+    col_count INTEGER NOT NULL,
+    create_datetime DATETIME NOT NULL,
+    modify_datetime DATETIME NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE game_cells (
+    id BIGINT(20) NOT NULL AUTO_INCREMENT,
+    row_pos INTEGER NOT NULL,
+    col_pos INTEGER NOT NULL,
+    cell_type VARCHAR(10) NOT NULL, #REGULAR MINE
+    cell_status VARCHAR(10) NOT NULL, #COVERED UNCOVERED FLAGGED
+    cell_value VARCHAR(10),
+    game_id BIGINT(20) NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_game FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO games (game_status, timer_value, mined_cell_found_count, mined_cell_count, row_count, col_count, create_datetime, modify_datetime)
+VALUES 
+("STARTED", "210", 5, 10, 8, 8, "2022-02-12 17:30:18", "2022-02-12 17:30:18");
+
+INSERT INTO game_cells (row_pos, col_pos, cell_type, cell_status, cell_value, game_id)
+VALUES
+(1, 1, "REGULAR", "UNCOVERED", NULL, 1),
+(1, 2, "MINE", "FLAGGED", NULL, 1),
+(1, 3, "MINE", "FLAGGED", NULL, 1),
+(1, 4, "REGULAR", "UNCOVERED", 1, 1),
+(1, 5, "REGULAR", "UNCOVERED", NULL, 1),
+(1, 6, "REGULAR", "UNCOVERED", NULL, 1),
+(1, 7, "REGULAR", "UNCOVERED", NULL, 1),
+(1, 8, "REGULAR", "UNCOVERED", NULL, 1),
+(2, 1, "REGULAR", "UNCOVERED", 2, 1),
+(2, 2, "REGULAR", "UNCOVERED", 3, 1),
+(2, 3, "REGULAR", "UNCOVERED", 3, 1),
+(2, 4, "REGULAR", "UNCOVERED", 1, 1),
+(2, 5, "REGULAR", "UNCOVERED", NULL, 1),
+(2, 6, "REGULAR", "UNCOVERED", NULL, 1),
+(2, 7, "REGULAR", "UNCOVERED", NULL, 1),
+(2, 8, "REGULAR", "UNCOVERED", 1, 1),
+(3, 1, "REGULAR", "UNCOVERED", 2, 1),
+(3, 2, "MINE", "FLAGGED", NULL, 1),
+(3, 3, "REGULAR", "UNCOVERED", 2, 1),
+(3, 4, "REGULAR", "UNCOVERED", 1, 1),
+(3, 5, "REGULAR", "UNCOVERED", 1, 1),
+(3, 6, "REGULAR", "UNCOVERED", NULL, 1),
+(3, 7, "MINE", "COVERED", NULL, 1),
+(3, 8, "REGULAR", "UNCOVERED", 1, 1),
+(4, 1, "MINE", "FLAGGED", NULL, 1),
+(4, 2, "REGULAR", "UNCOVERED", 2, 1),
+(4, 3, "REGULAR", "UNCOVERED", 2, 1),
+(4, 4, "MINE", "FLAGGED", NULL, 1),
+(4, 5, "REGULAR", "COVERED", 1, 1),
+(4, 6, "REGULAR", "COVERED", NULL, 1),
+(4, 7, "REGULAR", "COVERED", NULL, 1),
+(4, 8, "REGULAR", "COVERED", 2, 1),
+(5, 1, "REGULAR", "COVERED", 2, 1),
+(5, 2, "REGULAR", "COVERED", 2, 1),
+(5, 3, "REGULAR", "UNCOVERED", 3, 1),
+(5, 4, "REGULAR", "UNCOVERED", 2, 1),
+(5, 5, "REGULAR", "COVERED", 2, 1),
+(5, 6, "REGULAR", "COVERED", NULL, 1),
+(5, 7, "REGULAR", "COVERED", 1, 1),
+(5, 8, "MINE", "COVERED", NULL, 1),
+(6, 1, "REGULAR", "UNCOVERED", 1, 1),
+(6, 2, "MINE", "COVERED", NULL, 1),
+(6, 3, "REGULAR", "COVERED", 2, 1),
+(6, 4, "MINE", "COVERED", NULL, 1),
+(6, 5, "REGULAR", "COVERED", 1, 1),
+(6, 6, "REGULAR", "COVERED", NULL, 1),
+(6, 7, "REGULAR", "COVERED", 1, 1),
+(6, 8, "REGULAR", "COVERED", 1, 1),
+(7, 1, "REGULAR", "COVERED", 1, 1),
+(7, 2, "REGULAR", "COVERED", 1, 1),
+(7, 3, "REGULAR", "COVERED", 2, 1),
+(7, 4, "REGULAR", "COVERED", 1, 1),
+(7, 5, "REGULAR", "COVERED", 1, 1),
+(7, 6, "REGULAR", "UNCOVERED", 1, 1),
+(7, 7, "REGULAR", "COVERED", 1, 1),
+(7, 8, "REGULAR", "COVERED", 1, 1),
+(8, 1, "REGULAR", "COVERED", NULL, 1),
+(8, 2, "REGULAR", "COVERED", NULL, 1),
+(8, 3, "REGULAR", "COVERED", NULL, 1),
+(8, 4, "REGULAR", "UNCOVERED", NULL, 1),
+(8, 5, "REGULAR", "COVERED", NULL, 1),
+(8, 6, "REGULAR", "COVERED", 1, 1),
+(8, 7, "MINE", "COVERED", NULL, 1),
+(8, 8, "REGULAR", "COVERED", 1, 1);

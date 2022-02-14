@@ -1,0 +1,36 @@
+{
+  "name": "api-buscaminas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "jest --verbose"
+  },
+  "keywords": [],
+  "author": "Facundo Llampa",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "16.0.0",
+    "express": "4.17.2",
+    "mysql2": "2.3.3",
+    "sequelize": "6.16.1"
+  },
+  "devDependencies": {
+    "jest": "27.5.1",
+    "nodemon": "2.0.15",
+    "standard": "16.0.4",
+    "supertest": "6.2.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json",
+    "env": {
+      "jest": true
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
